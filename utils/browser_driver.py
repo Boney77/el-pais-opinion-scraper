@@ -157,9 +157,21 @@ def run_test(driver, thread_id, browser_name='Unknown'):
 			print(f"[Thread {thread_id}]   (No titles were translated)")
 
 		print(f"[Thread {thread_id}] ✅ [{browser_name}] Test completed successfully!")
+		# Mark session as passed in BrowserStack
+		try:
+			driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed","reason":"Test completed successfully"}}')
+		except Exception as bs_e:
+			print(f"[Thread {thread_id}] ⚠ [{browser_name}] Could not mark session as passed: {bs_e}")
 		driver.quit()
 	except Exception as e:
 		print(f"[Thread {thread_id}] ❌ [{browser_name}] Error: {str(e)[:150]}")
+		# Mark session as failed in BrowserStack only if session is active
+		try:
+			# Only attempt if driver has a session_id and is not already closed
+			if hasattr(driver, 'session_id') and driver.session_id:
+				driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed","reason":"Test failed: ' + str(e)[:100] + '"}}')
+		except Exception as bs_e:
+			print(f"[Thread {thread_id}] ⚠ [{browser_name}] Could not mark session as failed: {bs_e}")
 		try:
 			driver.quit()
 		except:

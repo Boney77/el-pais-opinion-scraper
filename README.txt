@@ -2,6 +2,10 @@
 
 This project scrapes news articles, images, and content from online sources using Selenium and BeautifulSoup, then performs text analysis and translation.
 
+🎥 Live Demo
+el-pais-opinion-scraper - https://drive.google.com/file/d/13QYUBG-eb371WoedfQufY_yDhY40L1nv/view?usp=sharing
+Cross-Browser Testing - https://drive.google.com/file/d/1evPEd26e6HL0ZeHx3KiesUvv9oCJ6Jb0/view?usp=sharing
+
 ## Features
 - Automated browser scraping with Selenium
 - Article and image extraction

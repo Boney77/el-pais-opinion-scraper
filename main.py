@@ -1,15 +1,20 @@
 
-from scraper.scraper import setup_driver, scrape_opinion_articles
+from scraper.scraper import scrape_opinion_articles
 from translator.translator import translate_titles
 from text_analysis.analyzer import analyze_repeated_words
-import time
+
+def get_driver():
+    from selenium import webdriver
+    options = webdriver.ChromeOptions()
+    options.add_argument("--start-maximized")
+    return webdriver.Chrome(options=options)
 
 def run_scraper():
     print("\n==============================")
     print("🚀 SCRAPING STARTED")
     print("==============================\n")
 
-    driver = setup_driver()
+    driver = get_driver()
     driver.get("https://elpais.com/")
 
     # STEP 1 — Scrape (article info prints to console as each article is opened)

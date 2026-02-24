@@ -1,6 +1,6 @@
 # Selenium News Scraper
 
-This project scrapes news articles, images, and content from online sources using Selenium and BeautifulSoup, then performs text analysis and translation.
+This project scrapes news articles, images, and content from online sources using Selenium, then performs text analysis and translation.
 
 🎥 Live Demo
 el-pais-opinion-scraper - https://drive.google.com/file/d/13QYUBG-eb371WoedfQufY_yDhY40L1nv/view?usp=sharing
@@ -20,10 +20,8 @@ Install dependencies with:
 
 ## Main Dependencies
 - selenium
-- beautifulsoup4
 - requests
 - Google Translation
-- python-dotenv
 
 ## Usage
 Run the main script:
@@ -37,7 +35,7 @@ Run the main script:
 - text_analysis/: Text analysis
 - translator/: Translation logic
 - utils/: Utilities (browser, helpers, parallel)
-- data/: Output data (articles, images)
+- data/: Output data (images)
 - logs/: Log files
 
 ## Parallel Execution with BrowserStack

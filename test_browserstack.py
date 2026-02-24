@@ -3,7 +3,7 @@ Simple BrowserStack connection test
 This script tests a single browser without threading to diagnose connection issues
 """
 from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities # Used to specify browser capabilities for Selenium WebDriver (older way)
 from selenium.webdriver.remote.client_config import ClientConfig
 from config import BROWSERSTACK_USERNAME, BROWSERSTACK_ACCESS_KEY
 import urllib3
@@ -14,7 +14,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 print("Testing BrowserStack connection...")
 print(f"Username: {BROWSERSTACK_USERNAME}")
-print(f"Access Key: {'(not set)' if not BROWSERSTACK_ACCESS_KEY else BROWSERSTACK_ACCESS_KEY[:4] + '...' }")
+print(f"Access Key: {'(not set)' if not BROWSERSTACK_ACCESS_KEY else BROWSERSTACK_ACCESS_KEY[:4] + '...' }") #Show only first 4 characters of access key for security
 
 try:
     # Simple Chrome test with basic capabilities
@@ -31,13 +31,13 @@ try:
     options = webdriver.ChromeOptions()
     
     # Set BrowserStack credentials
-    options.set_capability('bstack:options', {
+    options.set_capability('bstack:options', { 
         'userName': BROWSERSTACK_USERNAME,
         'accessKey': BROWSERSTACK_ACCESS_KEY,
     })
     
     # Add other capabilities
-    for key, value in capabilities.items():
+    for key, value in capabilities.items(): #Add all capabilities dynamically and fix BrowserStack naming differences
         if key not in ['browserName']:
             options.set_capability(key, value)
     
